@@ -17,7 +17,7 @@ export function createBike(body, callback) {
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(body)
   }).then(response => response.json())
-    .then(callback);
+    .then(() => callback());
 
   return {
     type: BIKE_CREATED,

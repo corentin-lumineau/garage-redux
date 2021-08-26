@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 import { fetchCars } from '../actions';
+import Aside from '../components/aside';
 
 class CarsIndex extends Component {
   componentWillMount() {
@@ -13,10 +14,13 @@ class CarsIndex extends Component {
   renderCars() {
     return this.props.cars.map((car) => {
       return (
-        <div>
-          <p>{car.brand}</p>
-          <p>{car.model}</p>
-          <p>{car.owner}</p>
+        <div className="card-bike">
+          <div className="details">
+            <p><b>Brand :</b> {car.brand}</p>
+            <p><b>Model :</b> {car.model}</p>
+            <p><b>Owner :</b> {car.owner}</p>
+          </div>
+          <img src="https://i.pinimg.com/originals/2e/d1/15/2ed115c13891fd913afe5d2f32dfa85f.jpg" alt="bike" />
         </div>
       );
     });
@@ -24,14 +28,15 @@ class CarsIndex extends Component {
 
   render() {
     return (
-      <div>
-        <h2>
-          COCO BIKE GARAGE
-        </h2>
-        {this.renderCars()}
-        <Link to={`/cars/new`}>
-          Add new bike
-        </Link>
+      <div className="app">
+        <Aside>
+          <Link to="/cars/new">
+            Add new bike
+          </Link>
+        </Aside>
+        <div className="bikes-container">
+          {this.renderCars()}
+        </div>
       </div>
     );
   }

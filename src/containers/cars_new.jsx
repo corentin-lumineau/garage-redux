@@ -8,21 +8,26 @@ import { createBike } from '../actions';
 
 class CarsNew extends Component {
   onSubmit = (values) => {
-    this.props.createPost(values, (post) => {
+    this.props.createBike(values, () => {
       this.props.history.push('/');
-      return post;
     });
+  }
+
+  required = (value) => {
+    if (!value) {
+      return 'Required';
+    }
+    return undefined;
   }
 
   renderField = (field) => {
     return (
       <div className="form-group">
         <label>{field.label}</label>
-        <input
-          className="form-control"
-          type={field.type}
-          {...field.input}
-        />
+        <div>
+          <input {...field.input} placeholder={field.label} type={field.type} />
+          {field.meta.touched && ((field.meta.error && <span>{field.meta.error}</span>) || (field.meta.warning && <span>{field.meta.warning}</span>))}
+        </div>
       </div>
     );
   }
@@ -32,21 +37,36 @@ class CarsNew extends Component {
       <div>
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <Field
-            label="Title"
-            name="title"
+            name="brand"
             type="text"
             component={this.renderField}
+            validate={this.required}
+            label="Brand"
           />
-          <label htmlFor="content">Content</label>
           <Field
-            className="form-control"
-            label="Content"
-            name="content"
-            component="textarea"
-            rows="8"
+            name="model"
+            type="text"
+            component={this.renderField}
+            validate={this.required}
+            label="Model"
           />
+          <Field
+            name="owner"
+            type="text"
+            component={this.renderField}
+            validate={this.required}
+            label="Owner"
+          />
+          <Field
+            name="plate"
+            type="text"
+            component={this.renderField}
+            validate={this.required}
+            label="Plate"
+          />
+          <br />
           <button
-            className="btn btn-primary" 
+            className="btn btn-primary"
             type="submit"
             disabled={this.props.pristine || this.props.submitting}
           >
@@ -61,8 +81,8 @@ class CarsNew extends Component {
   }
 }
 
-const decoratedComponent = connect(null, { createBike })(CarsNew);
-
 export default reduxForm({
-  form: 'newBikeForm',
-})(decoratedComponent);
+  form: 'newCarForm',
+})(
+  connect(null, { createBike })(CarsNew)
+);

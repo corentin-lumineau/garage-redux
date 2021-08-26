@@ -1,4 +1,87 @@
-.app {
-  margin-top: 20px;
-  margin-bottom: 20px;
+.container {
+  // display: flex;
+  // justify-content: center;
+
+  .app {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .bikes-container {
+      width: 60%;
+      padding: 1%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      background: black;
+      border-radius: 0px 5px 5px 0px;
+
+      .card-bike {
+        background: white;
+        height: 20%;
+        display: flex;
+        justify-content: space-between;
+      
+        img {
+          width: 20%;
+          height: 100%;
+        }
+
+        .details {
+          width: 80%;
+          background: grey;
+          padding: 1%;
+        }
+      }
+    }
+
+    .aside {
+      width: 30vh;
+      height: 80vh;
+      background: #FFCD30;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .illustration {
+        width: 100%;
+        height: 35%;
+      }
+    
+      img {
+        width: 37%;
+        height: 13%;
+        margin-top: -15px;
+        border: 2px solid #FFCD30;
+      }
+
+      p {
+        text-align: center;
+      }
+
+      a {
+        width: 85%;
+        height: 7%;
+        text-align: center;
+        border: 1px solid black;
+        color: black;
+        margin-top: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+
+        &:hover {
+          background: black;
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+  }
 }
+
+
+
